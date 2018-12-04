@@ -36,13 +36,15 @@ function getCharCountChecksum(input) {
     }
   });
 
-  console.log(countWithTwoChars * countWithThreeChars);
+  return countWithTwoChars * countWithThreeChars;
 }
 
 export default async function dayTwo() {
   const data = await readFile('input2.txt');
   const lines = data.split('\n');
   // console.log(lines.length);
+  const checksum = getCharCountChecksum(lines);
+  
   for (var x = 0; x < lines.length; x++) {
     const line = lines[x];
     const chars = line.split('');
@@ -59,8 +61,7 @@ export default async function dayTwo() {
         }
       });
       if (differentChars === 1) {
-        console.log(line);
-        console.log(line2);
+        return { checksum, differByOneChar1: line, differByOneChar2: line2 };
       }
     }
   }

@@ -1,7 +1,28 @@
-import readFile from './readFile.js';
-import day1 from './day01.js';
-import day2 from './day02.js';
-import day3 from './day03.js';
-import day4 from './day04.js';
+import { importModule } from 'https://uupaa.github.io/dynamic-import-polyfill/importModule.js';
+// import day4 from './day04.js';
 
-day4();
+// day4();
+
+const days = 4;
+const main = document.querySelector("main");
+const output = document.querySelector('aside pre code');
+
+async function loadDay(e) {
+  e.preventDefault();
+  // dynamic import is not supported in Firefox
+  // const module = await import(`./day${this.dataset.day}.js`);
+  output.innerHTML = 'Running...';
+  
+  const module = await importModule(`./day${this.dataset.day}.js`);
+  const result = await module.default();
+  output.innerHTML = JSON.stringify(result, null, 2);
+}
+
+[...Array(days).keys()].map(day => {
+  const dayLink = document.createElement('a');
+  dayLink.innerHTML = `Day ${day + 1}`;
+  dayLink.setAttribute('href', '#');
+  dayLink.setAttribute('data-day', (day + 1).toString().padStart(2, '0'));
+  dayLink.addEventListener('click', loadDay);
+  main.appendChild(dayLink);
+});

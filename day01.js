@@ -35,8 +35,10 @@ export default async function dayOne() {
   const lines = data.split('\n');
 
   const totalFrequency = getTotalFrequency(lines);
-  console.log({totalFrequency});
+  // console.log({totalFrequency});
 
   const repeatedFrequency = getRepeatedFrequency(lines);
-  console.log({repeatedFrequency});
+  // console.log({repeatedFrequency});
+  
+  return { totalFrequency, repeatedFrequency };
 }
