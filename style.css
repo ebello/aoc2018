@@ -9,3 +9,21 @@ h1 {
   font-style: italic;
   color: #373fff;
 }
+
+section {
+  display: flex;
+}
+
+main, aside {
+  flex: 1;
+  overflow: auto;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+main a {
+  display: block;
+  margin-bottom: 1em;
+}

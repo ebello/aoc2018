@@ -49,11 +49,14 @@ export default async function dayThree() {
   lines.forEach(line => rects.push(getRectangleCoordinates(line)));
 
   const overlapCounts = getCoordinateOverlapCount(rects);
-  console.log('overlap two or more', Object.keys(overlapCounts).filter(coord => overlapCounts[coord] >= 2).length);
+  const overlapTwoOrMore = Object.keys(overlapCounts).filter(coord => overlapCounts[coord] >= 2).length;
   
+  const claimsIdsThatDoNotOverlap = [];
   rects.forEach((rect) => {
     if (rect.coordinates.every(coord => overlapCounts[coord] === 1)) {
-      console.log('claim that does not overlap', rect);
+      claimsIdsThatDoNotOverlap.push(rect.id);
     }
   });
+  
+  return { overlapTwoOrMore, claimsIdsThatDoNotOverlap };
 }
