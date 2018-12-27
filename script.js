@@ -1,9 +1,9 @@
 import { importModule } from 'https://uupaa.github.io/dynamic-import-polyfill/importModule.js';
-import currentDay from './day07.js';
+// import currentDay from './day08.js';
 
 // currentDay();
 
-const days = 7;
+const days = 8;
 const main = document.querySelector("main");
 const output = document.querySelector('aside pre code');
 
